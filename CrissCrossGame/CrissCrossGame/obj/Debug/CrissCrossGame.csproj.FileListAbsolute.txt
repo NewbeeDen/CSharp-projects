@@ -1,0 +1,93 @@
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\CrissCrossGame.exe.config
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.csprojResolveAssemblyReference.cache
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.Form1.resources
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.Properties.Resources.resources
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.GenerateResource.Cache
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\CrissCrossGame.exe
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\CrissCrossGame.pdb
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.exe
+c:\users\den\documents\visual studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.pdb
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\CrissCrossGame.exe.config
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.exe
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.pdb
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.Form1.resources
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.Properties.Resources.resources
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.GenerateResource.Cache
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\CrissCrossGame.exe
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\CrissCrossGame.pdb
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\bin\Debug\Criss.jpg
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\bin\Debug\Cross.jpg
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\bin\Debug\CrissCrossGame.exe.config
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\obj\Debug\CrissCrossGame.exe
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\obj\Debug\CrissCrossGame.pdb
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\bin\Debug\bin\Debug\Criss.jpg
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\bin\Debug\bin\Debug\Cross.jpg
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\bin\Debug\CrissCrossGame.exe
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\bin\Debug\CrissCrossGame.pdb
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\obj\Debug\CrissCrossGame.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\obj\Debug\CrissCrossGame.Form1.resources
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\obj\Debug\CrissCrossGame.Properties.Resources.resources
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame1\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.GenerateResource.Cache
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\bin\Debug\Criss.jpg
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\bin\Debug\bin\Debug\Cross.jpg
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\Interop.WMPLib.dll
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.ResolveComReference.cache
+F:\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.exe.config
+F:\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\Interop.WMPLib.dll
+F:\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.ResolveComReference.cache
+F:\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.exe
+F:\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.pdb
+F:\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\bin\Debug\Criss.jpg
+F:\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\bin\Debug\Cross.jpg
+F:\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.exe
+F:\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.pdb
+F:\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csprojResolveAssemblyReference.cache
+F:\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Form1.resources
+F:\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Properties.Resources.resources
+F:\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.GenerateResource.Cache
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.exe.config
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\Interop.WMPLib.dll
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.ResolveComReference.cache
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.exe
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.pdb
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\bin\Debug\Criss.jpg
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\bin\Debug\Cross.jpg
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.exe
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.pdb
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.bin.setting.resources
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Form1.resources
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Properties.Resources.resources
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.GenerateResource.Cache
+C:\Users\ASUS\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Chat.resources
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.exe.config
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\Interop.WMPLib.dll
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.ResolveComReference.cache
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.exe
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.pdb
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\bin\Debug\Criss.jpg
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\bin\Debug\Cross.jpg
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.exe
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.pdb
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csprojResolveAssemblyReference.cache
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Chat.resources
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.bin.setting.resources
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Form1.resources
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Properties.Resources.resources
+C:\Users\Den\Documents\Visual Studio 2013\Projects\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.GenerateResource.Cache
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.exe.config
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\Interop.WMPLib.dll
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.ResolveComReference.cache
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.exe
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.pdb
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\bin\Debug\Criss.jpg
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\bin\Debug\Cross.jpg
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.exe
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\bin\Debug\CrissCrossGame.pdb
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csprojResolveAssemblyReference.cache
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Chat.resources
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.bin.setting.resources
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Game.resources
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Properties.Resources.resources
+E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.GenerateResource.Cache
