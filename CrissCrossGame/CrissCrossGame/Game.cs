@@ -34,6 +34,7 @@ namespace CrissCrossGame
 
         }
 
+        //Check that we play by criss
         private void buttonCriss_Click(object sender, EventArgs e)
         {
             chergaPlayer = 1;
@@ -1183,9 +1184,7 @@ namespace CrissCrossGame
 
         private void ConnectionSettings_Click(object sender, EventArgs e)
         {
-            if (setting.)
-            conset = new setting();
-            conset.Show();
+            
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

@@ -39,7 +39,7 @@
             this.messages.Location = new System.Drawing.Point(16, 13);
             this.messages.Multiline = true;
             this.messages.Name = "messages";
-            this.messages.Size = new System.Drawing.Size(244, 120);
+            this.messages.Size = new System.Drawing.Size(256, 120);
             this.messages.TabIndex = 0;
             // 
             // mymessage
@@ -47,12 +47,12 @@
             this.mymessage.Location = new System.Drawing.Point(16, 146);
             this.mymessage.Multiline = true;
             this.mymessage.Name = "mymessage";
-            this.mymessage.Size = new System.Drawing.Size(180, 49);
+            this.mymessage.Size = new System.Drawing.Size(180, 37);
             this.mymessage.TabIndex = 1;
             // 
             // Send
             // 
-            this.Send.Location = new System.Drawing.Point(206, 160);
+            this.Send.Location = new System.Drawing.Point(205, 152);
             this.Send.Name = "Send";
             this.Send.Size = new System.Drawing.Size(74, 23);
             this.Send.TabIndex = 2;
@@ -64,10 +64,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 213);
+            this.ClientSize = new System.Drawing.Size(286, 195);
             this.Controls.Add(this.Send);
             this.Controls.Add(this.mymessage);
             this.Controls.Add(this.messages);
+            this.MaximumSize = new System.Drawing.Size(302, 233);
+            this.MinimumSize = new System.Drawing.Size(302, 233);
             this.Name = "Chat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Chat";

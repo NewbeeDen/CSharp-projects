@@ -91,3 +91,8 @@ E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.bin.setting.res
 E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Game.resources
 E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.Properties.Resources.resources
 E:\C#\CrissCrossGame_NEW\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.GenerateResource.Cache
+E:\C#\CSharp-projects\CrissCrossGame\CrissCrossGame\bin\Debug\CrissCrossGame.exe.config
+E:\C#\CSharp-projects\CrissCrossGame\CrissCrossGame\obj\Debug\Interop.WMPLib.dll
+E:\C#\CSharp-projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.csproj.ResolveComReference.cache
+E:\C#\CSharp-projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.exe
+E:\C#\CSharp-projects\CrissCrossGame\CrissCrossGame\obj\Debug\CrissCrossGame.pdb
