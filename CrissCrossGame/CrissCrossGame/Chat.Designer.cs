@@ -73,6 +73,7 @@
             this.Name = "Chat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Chat";
+            this.Load += new System.EventHandler(this.Chat_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

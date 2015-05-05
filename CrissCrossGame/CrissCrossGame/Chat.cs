@@ -16,10 +16,15 @@ namespace CrissCrossGame
 {
     public partial class Chat : Form
     {
+
+        string localIP = "0.0.0.0";
+        public string oponentIP = "";
+        public string nick = "";
+
         public Chat()
         {
             InitializeComponent();
-            //Создаем поток для приема сообщений
+            //Create thread for receiving messages 
             new Thread(new ThreadStart(Receiver)).Start();
         }
 
@@ -28,35 +33,36 @@ namespace CrissCrossGame
             new Thread(new ParameterizedThreadStart(ThreadSend)).Start(mymessage.Text);
         }
 
-        //Метод потока
+        //Thread method 
         protected void Receiver()
         {
-            //Создаем Listener на порт "по умолчанию"
-            TcpListener Listen = new TcpListener(7000);
-            //Начинаем прослушку
+
+            //Create Listener on localhost and port 7000
+            TcpListener Listen = new TcpListener(IPAddress.Parse(localIP), 7000);
+            //Start listen
             Listen.Start();
-            //и заведем заранее сокет
+            //and create socket
             Socket ReceiveSocket;
             while (true)
             {
                 try
                 {
-                    //Пришло сообщение
+                    //Message came
                     ReceiveSocket = Listen.AcceptSocket();
                     Byte[] Receive = new Byte[256];
-                    //Читать сообщение будем в поток
+                    //Read message will be in thread
                     using (MemoryStream MessageR = new MemoryStream())
                     {
-                        //Количество считанных байт
+                        //Number of readed bytes
                         Int32 ReceivedBytes;
                         do
-                        {//Собственно читаем
+                        {//Reading
                             ReceivedBytes = ReceiveSocket.Receive(Receive, Receive.Length, 0);
-                            //и записываем в поток
+                            //and write in thread
                             MessageR.Write(Receive, 0, ReceivedBytes);
-                            //Читаем до тех пор, пока в очереди не останется данных
+                            //Reading, while in queue is data
                         } while (ReceiveSocket.Available > 0);
-                        //Добавляем изменения в ChatBox
+                        //Add changes in ChatBox
                         messages.BeginInvoke(AcceptDelegate, new object[] { Encoding.Default.GetString(MessageR.ToArray()), messages });
                     }
                 }
@@ -64,11 +70,10 @@ namespace CrissCrossGame
                 {
                     MessageBox.Show(ex.Message);
                 }
-
             }
         }
 
-        //Делегат доступа к контролам формы
+        //Access delegate to form control
         delegate void SendMsg(String Text, RichTextBox Rtb);
 
         SendMsg AcceptDelegate = (String Text, RichTextBox Rtb) =>
@@ -77,35 +82,40 @@ namespace CrissCrossGame
         };
 
         /// <summary>
-        /// Отправляет сообщение в потоке на IP, заданный в контроле IP
+        /// Send message in thread on IP from settings
         /// </summary>
-        /// <param name="Message">Передаваемое сообщение</param>
+        /// <param name="Message">Message which sending</param>
         void ThreadSend(object Message)
         {
             try
             {
-                //Проверяем входной объект на соответствие строке
+                //Check that inputed object match to string
                 String MessageText = "";
                 if (Message is String)
                     MessageText = Message as String;
                 else
                     throw new Exception("На вход необходимо подавать строку");
                 Game frm = new Game();
-                //Создаем сокет, коннектимся
+                //Create socket and connecting
                 IPEndPoint EndPoint = new IPEndPoint(IPAddress.Parse(frm.oponentIP), 7000);
                 Socket Connector = new Socket(EndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 Connector.Connect(EndPoint);
-                //Отправляем сообщение
+                //Send message
                 Byte[] SendBytes = Encoding.Default.GetBytes(MessageText);
                 Connector.Send(SendBytes);
                 Connector.Close();
-                //Изменяем поле сообщений (уведомляем, что отправили сообщение)
+                //Change message field
                 messages.BeginInvoke(AcceptDelegate, new object[] { frm.mynickname + MessageText, messages });
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Chat_Load(object sender, EventArgs e)
+        {
+            
         }
 
 

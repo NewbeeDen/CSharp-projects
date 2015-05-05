@@ -44,6 +44,9 @@ namespace CrissCrossGame.bin
                 tbClientIP.Text = sr.ReadLine();
                 tbMyNick.Text = sr.ReadLine();
                 sr.Close();
+                Chat chat = new Chat();
+                chat.oponentIP = tbClientIP.Text;
+                chat.nick = tbMyNick.Text;
             }
         }
 
@@ -74,6 +77,9 @@ namespace CrissCrossGame.bin
                     File.Delete(ConfFile);
                 }
                 StreamWriter fs = new StreamWriter(ConfFile, true, Encoding.Default);
+                Chat chat = new Chat();
+                chat.oponentIP = tbClientIP.Text;
+                chat.nick = tbMyNick.Text;
                 fs.WriteLine(tbClientIP.Text);
                 fs.WriteLine(tbMyNick.Text);
                 fs.Close();
