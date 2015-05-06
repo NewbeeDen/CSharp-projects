@@ -36,9 +36,9 @@ namespace CrissCrossGame
         //Thread method 
         protected void Receiver()
         {
-
             //Create Listener on localhost and port 7000
             TcpListener Listen = new TcpListener(IPAddress.Parse(localIP), 7000);
+            Thread.Sleep(1000);
             //Start listen
             Listen.Start();
             //and create socket
@@ -95,17 +95,23 @@ namespace CrissCrossGame
                     MessageText = Message as String;
                 else
                     throw new Exception("На вход необходимо подавать строку");
-                Game frm = new Game();
                 //Create socket and connecting
-                IPEndPoint EndPoint = new IPEndPoint(IPAddress.Parse(frm.oponentIP), 7000);
+                IPEndPoint EndPoint = new IPEndPoint(IPAddress.Parse(oponentIP), 7000);
                 Socket Connector = new Socket(EndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 Connector.Connect(EndPoint);
-                //Send message
-                Byte[] SendBytes = Encoding.Default.GetBytes(MessageText);
-                Connector.Send(SendBytes);
-                Connector.Close();
-                //Change message field
-                messages.BeginInvoke(AcceptDelegate, new object[] { frm.mynickname + MessageText, messages });
+                if (Connector.Connected)
+                {
+                    //Send message
+                    Byte[] SendBytes = Encoding.Default.GetBytes(MessageText);
+                    Connector.Send(SendBytes);
+                    Connector.Close();
+                    //Change message field
+                    messages.BeginInvoke(AcceptDelegate, new object[] { nick + MessageText, messages });
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось установить соединение! Проверьте настройки!");
+                }
             }
             catch (Exception ex)
             {

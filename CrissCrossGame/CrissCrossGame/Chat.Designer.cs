@@ -36,23 +36,23 @@
             // messages
             // 
             this.messages.Enabled = false;
-            this.messages.Location = new System.Drawing.Point(16, 13);
+            this.messages.Location = new System.Drawing.Point(12, 12);
             this.messages.Multiline = true;
             this.messages.Name = "messages";
-            this.messages.Size = new System.Drawing.Size(256, 120);
+            this.messages.Size = new System.Drawing.Size(294, 159);
             this.messages.TabIndex = 0;
             // 
             // mymessage
             // 
-            this.mymessage.Location = new System.Drawing.Point(16, 146);
+            this.mymessage.Location = new System.Drawing.Point(12, 180);
             this.mymessage.Multiline = true;
             this.mymessage.Name = "mymessage";
-            this.mymessage.Size = new System.Drawing.Size(180, 37);
+            this.mymessage.Size = new System.Drawing.Size(212, 25);
             this.mymessage.TabIndex = 1;
             // 
             // Send
             // 
-            this.Send.Location = new System.Drawing.Point(205, 152);
+            this.Send.Location = new System.Drawing.Point(232, 180);
             this.Send.Name = "Send";
             this.Send.Size = new System.Drawing.Size(74, 23);
             this.Send.TabIndex = 2;
@@ -64,11 +64,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 195);
+            this.ClientSize = new System.Drawing.Size(316, 215);
             this.Controls.Add(this.Send);
             this.Controls.Add(this.mymessage);
             this.Controls.Add(this.messages);
-            this.MaximumSize = new System.Drawing.Size(302, 233);
+            this.MaximumSize = new System.Drawing.Size(332, 253);
             this.MinimumSize = new System.Drawing.Size(302, 233);
             this.Name = "Chat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

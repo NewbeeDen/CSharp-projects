@@ -11,18 +11,22 @@ using System.Media;
 using System.IO;
 using WMPLib;
 using CrissCrossGame.bin;
+using System.Net.Sockets;
+using System.Net;
+using System.Threading;
 
 namespace CrissCrossGame
 {
     public partial class Game : Form
     {
         private String CurrentPath;
-        public string oponentIP = "", mynickname = "";
-        int chergaPlayer = 0, chergaComp = 0, ScorePlayer = 0, ScoreComp = 0;
-        bool move;
+        public string oponentIP = "", nick = "";
+        int chergaPlayer = 0, chergaComp = 0, ScorePlayer = 0, ScoreComp = 0, whereoponentmove = 0;
+        bool move, networkgame = false;
         public Form conset;
         int[] field = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         WMPLib.WindowsMediaPlayer wmplayer = new WindowsMediaPlayer();
+        Socket networkgamesocket;
         public Game()
         {
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -45,6 +49,7 @@ namespace CrissCrossGame
 
         }
 
+        //Check that we play by cross
         private void buttonCross_Click(object sender, EventArgs e)
         {
             chergaPlayer = 2;
@@ -54,8 +59,7 @@ namespace CrissCrossGame
             this.Width = 180;
             ComputerMove();
         }
-
-
+        
         private void buttonField1_Click(object sender, EventArgs e)
         {
             if (move == true)
@@ -65,12 +69,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField1();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else 
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField1();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -85,12 +97,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField2();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField2();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -105,12 +125,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField3();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField3();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -125,12 +153,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField4();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField4();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -145,12 +181,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField5();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField5();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -165,12 +209,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField6();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField6();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -185,12 +237,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField7();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField7();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -206,12 +266,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField8();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField8();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -226,12 +294,20 @@ namespace CrissCrossGame
                     if (chergaPlayer == 1)
                     {
                         CrissInField9();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                     else
                     {
                         CrossInField9();
-                        ComputerMove();
+                        if (!networkgame) ComputerMove();
+                        else
+                        {
+                            oponentMove();
+                        }
                     }
                 }
             }
@@ -954,182 +1030,416 @@ namespace CrissCrossGame
 
         private void CrissInField1()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField1.BackgroundImage = image;
-            buttonField1.BackgroundImageLayout = ImageLayout.Stretch;
-            field[1] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("1"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField1.BackgroundImage = image;
+                buttonField1.BackgroundImageLayout = ImageLayout.Stretch;
+                field[1] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField1.BackgroundImage = image;
+                buttonField1.BackgroundImageLayout = ImageLayout.Stretch;
+                field[1] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrossInField1()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField1.BackgroundImage = image;
-            buttonField1.BackgroundImageLayout = ImageLayout.Stretch;
-            field[1] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("1"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField1.BackgroundImage = image;
+                buttonField1.BackgroundImageLayout = ImageLayout.Stretch;
+                field[1] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField1.BackgroundImage = image;
+                buttonField1.BackgroundImageLayout = ImageLayout.Stretch;
+                field[1] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
        
         private void CrissInField2()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField2.BackgroundImage = image;
-            buttonField2.BackgroundImageLayout = ImageLayout.Stretch;
-            field[2] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("2"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField2.BackgroundImage = image;
+                buttonField2.BackgroundImageLayout = ImageLayout.Stretch;
+                field[2] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField2.BackgroundImage = image;
+                buttonField2.BackgroundImageLayout = ImageLayout.Stretch;
+                field[2] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrossInField2()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField2.BackgroundImage = image;
-            buttonField2.BackgroundImageLayout = ImageLayout.Stretch;
-            field[2] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("2"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField2.BackgroundImage = image;
+                buttonField2.BackgroundImageLayout = ImageLayout.Stretch;
+                field[2] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField2.BackgroundImage = image;
+                buttonField2.BackgroundImageLayout = ImageLayout.Stretch;
+                field[2] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrissInField3()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField3.BackgroundImage = image;
-            buttonField3.BackgroundImageLayout = ImageLayout.Stretch;
-            field[3] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("3"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField3.BackgroundImage = image;
+                buttonField3.BackgroundImageLayout = ImageLayout.Stretch;
+                field[3] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField3.BackgroundImage = image;
+                buttonField3.BackgroundImageLayout = ImageLayout.Stretch;
+                field[3] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrossInField3()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField3.BackgroundImage = image;
-            buttonField3.BackgroundImageLayout = ImageLayout.Stretch;
-            field[3] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("3"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField3.BackgroundImage = image;
+                buttonField3.BackgroundImageLayout = ImageLayout.Stretch;
+                field[3] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField3.BackgroundImage = image;
+                buttonField3.BackgroundImageLayout = ImageLayout.Stretch;
+                field[3] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrissInField4()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField4.BackgroundImage = image;
-            buttonField4.BackgroundImageLayout = ImageLayout.Stretch;
-            field[4] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("4"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField4.BackgroundImage = image;
+                buttonField4.BackgroundImageLayout = ImageLayout.Stretch;
+                field[4] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField4.BackgroundImage = image;
+                buttonField4.BackgroundImageLayout = ImageLayout.Stretch;
+                field[4] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrossInField4()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField4.BackgroundImage = image;
-            buttonField4.BackgroundImageLayout = ImageLayout.Stretch;
-            field[4] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("4"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField4.BackgroundImage = image;
+                buttonField4.BackgroundImageLayout = ImageLayout.Stretch;
+                field[4] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField4.BackgroundImage = image;
+                buttonField4.BackgroundImageLayout = ImageLayout.Stretch;
+                field[4] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrissInField5()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField5.BackgroundImage = image;
-            buttonField5.BackgroundImageLayout = ImageLayout.Stretch;
-            field[5] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("5"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField5.BackgroundImage = image;
+                buttonField5.BackgroundImageLayout = ImageLayout.Stretch;
+                field[5] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField5.BackgroundImage = image;
+                buttonField5.BackgroundImageLayout = ImageLayout.Stretch;
+                field[5] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
        
         private void CrossInField5()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField5.BackgroundImage = image;
-            buttonField5.BackgroundImageLayout = ImageLayout.Stretch;
-            field[5] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("5"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField5.BackgroundImage = image;
+                buttonField5.BackgroundImageLayout = ImageLayout.Stretch;
+                field[5] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField5.BackgroundImage = image;
+                buttonField5.BackgroundImageLayout = ImageLayout.Stretch;
+                field[5] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrissInField6()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField6.BackgroundImage = image;
-            buttonField6.BackgroundImageLayout = ImageLayout.Stretch;
-            field[6] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("6"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField6.BackgroundImage = image;
+                buttonField6.BackgroundImageLayout = ImageLayout.Stretch;
+                field[6] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField6.BackgroundImage = image;
+                buttonField6.BackgroundImageLayout = ImageLayout.Stretch;
+                field[6] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrossInField6()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField6.BackgroundImage = image;
-            buttonField6.BackgroundImageLayout = ImageLayout.Stretch;
-            field[6] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("6"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField6.BackgroundImage = image;
+                buttonField6.BackgroundImageLayout = ImageLayout.Stretch;
+                field[6] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField6.BackgroundImage = image;
+                buttonField6.BackgroundImageLayout = ImageLayout.Stretch;
+                field[6] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
        
         private void CrissInField7()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField7.BackgroundImage = image;
-            buttonField7.BackgroundImageLayout = ImageLayout.Stretch;
-            field[7] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("7"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField7.BackgroundImage = image;
+                buttonField7.BackgroundImageLayout = ImageLayout.Stretch;
+                field[7] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField7.BackgroundImage = image;
+                buttonField7.BackgroundImageLayout = ImageLayout.Stretch;
+                field[7] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
        
         private void CrossInField7()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField7.BackgroundImage = image;
-            buttonField7.BackgroundImageLayout = ImageLayout.Stretch;
-            field[7] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("7"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField7.BackgroundImage = image;
+                buttonField7.BackgroundImageLayout = ImageLayout.Stretch;
+                field[7] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField7.BackgroundImage = image;
+                buttonField7.BackgroundImageLayout = ImageLayout.Stretch;
+                field[7] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrissInField8()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField8.BackgroundImage = image;
-            buttonField8.BackgroundImageLayout = ImageLayout.Stretch;
-            field[8] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("8"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField8.BackgroundImage = image;
+                buttonField8.BackgroundImageLayout = ImageLayout.Stretch;
+                field[8] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField8.BackgroundImage = image;
+                buttonField8.BackgroundImageLayout = ImageLayout.Stretch;
+                field[8] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrossInField8()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField8.BackgroundImage = image;
-            buttonField8.BackgroundImageLayout = ImageLayout.Stretch;
-            field[8] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("8"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField8.BackgroundImage = image;
+                buttonField8.BackgroundImageLayout = ImageLayout.Stretch;
+                field[8] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField8.BackgroundImage = image;
+                buttonField8.BackgroundImageLayout = ImageLayout.Stretch;
+                field[8] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
         
         private void CrissInField9()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
-            buttonField9.BackgroundImage = image;
-            buttonField9.BackgroundImageLayout = ImageLayout.Stretch;
-            field[9] = 1;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("9"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField9.BackgroundImage = image;
+                buttonField9.BackgroundImageLayout = ImageLayout.Stretch;
+                field[9] = 1;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Criss));
+                buttonField9.BackgroundImage = image;
+                buttonField9.BackgroundImageLayout = ImageLayout.Stretch;
+                field[9] = 1;
+                move = !move;
+                GameIsOver();
+            }
         }
        
         private void CrossInField9()
         {
-            Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
-            buttonField9.BackgroundImage = image;
-            buttonField9.BackgroundImageLayout = ImageLayout.Stretch;
-            field[9] = 2;
-            move = !move;
-            GameIsOver();
+            if (networkgame)
+            {
+                networkgamesocket.Send(Encoding.Default.GetBytes("9"));
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField9.BackgroundImage = image;
+                buttonField9.BackgroundImageLayout = ImageLayout.Stretch;
+                field[9] = 2;
+                move = !move;
+                GameIsOver();
+            }
+            else
+            {
+                Image image = ((System.Drawing.Image)(Properties.Resources.Cross));
+                buttonField9.BackgroundImage = image;
+                buttonField9.BackgroundImageLayout = ImageLayout.Stretch;
+                field[9] = 2;
+                move = !move;
+                GameIsOver();
+            }
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -1184,7 +1494,8 @@ namespace CrissCrossGame
 
         private void ConnectionSettings_Click(object sender, EventArgs e)
         {
-            
+            Form setting = new setting();
+            setting.Show();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -1205,10 +1516,175 @@ namespace CrissCrossGame
             chat.ShowDialog();
         }
 
+        private void играПоСетиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (System.IO.File.Exists("config.txt")) 
+            {
+                networkgame = !networkgame;
+                if (networkgame)
+                {
+                    new Thread(new ThreadStart(Receiver)).Start();
+                    IPEndPoint EndPoint = new IPEndPoint(IPAddress.Parse(oponentIP), 7001);
+                    Socket networkgamesocket = new Socket(EndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                    networkgamesocket.Connect(EndPoint);
+                }
+                else  
+                {
+                    try
+                    {
+                        networkgamesocket.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
 
+        private void oponentMove()
+        {
+            if (networkgamesocket != null)
+            {
+                if (!move)
+                {
+                    switch (whereoponentmove)
+                    {
+                        case 1:
+                            {
+                                if (field[1] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField1();
+                                    if (chergaComp == 2) CrossInField1();
+                                    return;
+                                }
+                                break;
+                            }
+                        case 2:
+                            {
+                                if (field[2] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField2();
+                                    if (chergaComp == 2) CrossInField2();
+                                    return;
+                                }
+                                break;
+                            }
+                        case 3:
+                            {
+                                if (field[3] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField3();
+                                    if (chergaComp == 2) CrossInField3();
+                                    return;
+                                }
+                                break;
+                            }
+                        case 4:
+                            {
+                                if (field[4] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField4();
+                                    if (chergaComp == 2) CrossInField4();
+                                    return;
+                                }
+                                break;
+                            }
+                        case 5:
+                            {
+                                if (field[5] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField5();
+                                    if (chergaComp == 2) CrossInField5();
+                                    return;
+                                }
+                                break;
+                            }
+                        case 6:
+                            {
+                                if (field[6] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField6();
+                                    if (chergaComp == 2) CrossInField6();
+                                    return;
+                                }
+                                break;
+                            }
+                        case 7:
+                            {
+                                if (field[7] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField7();
+                                    if (chergaComp == 2) CrossInField7();
+                                    return;
+                                }
+                                break;
+                            }
+                        case 8:
+                            {
+                                if (field[8] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField8();
+                                    if (chergaComp == 2) CrossInField8();
+                                    return;
+                                }
+                                break;
+                            }
+                        case 9:
+                            {
+                                if (field[9] == 0)
+                                {
+                                    if (chergaComp == 1) CrissInField9();
+                                    if (chergaComp == 2) CrossInField9();
+                                    return;
+                                }
+                                break;
+                            }
+                    }
+                }
+            }
+        }
 
+        protected void Receiver()
+        {
+            //Create Listener on localhost and port 7000
+            TcpListener Listen = new TcpListener(IPAddress.Parse("0.0.0.0"), 7000);
+            Thread.Sleep(1000);
+            //Start listen
+            Listen.Start();
+            //and create socket
+            Socket ReceiveSocket;
+            while (true)
+            {
+                try
+                {
+                    //Message came
+                    ReceiveSocket = Listen.AcceptSocket();
+                    Byte[] Receive = new Byte[256];
+                    //Read message will be in thread
+                    using (MemoryStream MessageR = new MemoryStream())
+                    {
+                        //Number of readed bytes
+                        Int32 ReceivedBytes;
+                        do
+                        {//Reading
+                            ReceivedBytes = ReceiveSocket.Receive(Receive, Receive.Length, 0);
+                            //and write in thread
+                            MessageR.Write(Receive, 0, ReceivedBytes);
+                            //Reading, while in queue is data
+                        } while (ReceiveSocket.Available > 0);
+                        string oponentmove = Encoding.Default.GetString(MessageR.ToArray());
+                        whereoponentmove = Int32.Parse(oponentmove);
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
+}
 
 
         

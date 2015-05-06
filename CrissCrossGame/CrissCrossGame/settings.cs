@@ -80,6 +80,9 @@ namespace CrissCrossGame.bin
                 Chat chat = new Chat();
                 chat.oponentIP = tbClientIP.Text;
                 chat.nick = tbMyNick.Text;
+                Game game = new Game();
+                game.oponentIP = tbClientIP.Text;
+                game.nick = tbMyNick.Text;
                 fs.WriteLine(tbClientIP.Text);
                 fs.WriteLine(tbMyNick.Text);
                 fs.Close();

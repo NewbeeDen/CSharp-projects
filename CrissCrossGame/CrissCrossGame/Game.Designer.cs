@@ -46,8 +46,8 @@
             this.MenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.сетьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.играПоСетиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ConnectionSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.chat = new System.Windows.Forms.ToolStripMenuItem();
+            this.ConnectionSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.PlayerScore = new System.Windows.Forms.Label();
             this.CompScore = new System.Windows.Forms.Label();
@@ -224,16 +224,11 @@
             // 
             // играПоСетиToolStripMenuItem
             // 
+            this.играПоСетиToolStripMenuItem.CheckOnClick = true;
             this.играПоСетиToolStripMenuItem.Name = "играПоСетиToolStripMenuItem";
             this.играПоСетиToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.играПоСетиToolStripMenuItem.Text = "Игра по сети";
-            // 
-            // ConnectionSettings
-            // 
-            this.ConnectionSettings.Name = "ConnectionSettings";
-            this.ConnectionSettings.Size = new System.Drawing.Size(160, 22);
-            this.ConnectionSettings.Text = "Настройка сети";
-            this.ConnectionSettings.Click += new System.EventHandler(this.ConnectionSettings_Click);
+            this.играПоСетиToolStripMenuItem.Click += new System.EventHandler(this.играПоСетиToolStripMenuItem_Click);
             // 
             // chat
             // 
@@ -241,6 +236,13 @@
             this.chat.Size = new System.Drawing.Size(160, 22);
             this.chat.Text = "Чат";
             this.chat.Click += new System.EventHandler(this.chat_Click);
+            // 
+            // ConnectionSettings
+            // 
+            this.ConnectionSettings.Name = "ConnectionSettings";
+            this.ConnectionSettings.Size = new System.Drawing.Size(160, 22);
+            this.ConnectionSettings.Text = "Настройка сети";
+            this.ConnectionSettings.Click += new System.EventHandler(this.ConnectionSettings_Click);
             // 
             // label1
             // 
@@ -338,7 +340,7 @@
             this.buttonPlay.UseVisualStyleBackColor = true;
             this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
             // 
-            // Form1
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -361,7 +363,7 @@
             this.Controls.Add(this.buttonField1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "Game";
             this.Text = "Крестики-Нолики";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
