@@ -1,0 +1,1 @@
+c:\users\den\documents\visual studio 2015\Projects\ModbusConnection\ModbusConnection\bin\Release\ModbusConnection.exe.config
