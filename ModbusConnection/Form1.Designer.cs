@@ -1,6 +1,6 @@
 ﻿namespace ModbusConnection
 {
-    partial class Form1
+    partial class Trend
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textboxIP = new System.Windows.Forms.TextBox();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.labelStatus = new System.Windows.Forms.Label();
             this.buttonDisconnect = new System.Windows.Forms.Button();
             this.TBRegAddress = new System.Windows.Forms.TextBox();
-            this.buttonReadReg = new System.Windows.Forms.Button();
-            this.TBValue = new System.Windows.Forms.TextBox();
+            this.textBox = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Options = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textboxIP
@@ -79,42 +81,53 @@
             // 
             // TBRegAddress
             // 
-            this.TBRegAddress.Location = new System.Drawing.Point(386, 121);
+            this.TBRegAddress.Location = new System.Drawing.Point(386, 85);
             this.TBRegAddress.Name = "TBRegAddress";
             this.TBRegAddress.Size = new System.Drawing.Size(100, 20);
             this.TBRegAddress.TabIndex = 3;
             // 
-            // buttonReadReg
+            // textBox
             // 
-            this.buttonReadReg.Location = new System.Drawing.Point(233, 118);
-            this.buttonReadReg.Name = "buttonReadReg";
-            this.buttonReadReg.Size = new System.Drawing.Size(133, 23);
-            this.buttonReadReg.TabIndex = 4;
-            this.buttonReadReg.Text = "ReadRegister";
-            this.buttonReadReg.UseVisualStyleBackColor = true;
-            this.buttonReadReg.Click += new System.EventHandler(this.buttonReadReg_Click);
+            this.textBox.AcceptsReturn = true;
+            this.textBox.AcceptsTab = true;
+            this.textBox.Location = new System.Drawing.Point(31, 126);
+            this.textBox.Multiline = true;
+            this.textBox.Name = "textBox";
+            this.textBox.ReadOnly = true;
+            this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox.Size = new System.Drawing.Size(455, 202);
+            this.textBox.TabIndex = 6;
+            this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
-            // TBValue
+            // timer1
             // 
-            this.TBValue.Location = new System.Drawing.Point(233, 187);
-            this.TBValue.Name = "TBValue";
-            this.TBValue.Size = new System.Drawing.Size(100, 20);
-            this.TBValue.TabIndex = 5;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Form1
+            // Options
+            // 
+            this.Options.Location = new System.Drawing.Point(15, 12);
+            this.Options.Name = "Options";
+            this.Options.Size = new System.Drawing.Size(193, 23);
+            this.Options.TabIndex = 7;
+            this.Options.Text = "Налаштування";
+            this.Options.UseVisualStyleBackColor = true;
+            this.Options.Click += new System.EventHandler(this.Options_Click);
+            // 
+            // Trend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 285);
-            this.Controls.Add(this.TBValue);
-            this.Controls.Add(this.buttonReadReg);
+            this.ClientSize = new System.Drawing.Size(676, 463);
+            this.Controls.Add(this.Options);
+            this.Controls.Add(this.textBox);
             this.Controls.Add(this.TBRegAddress);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.buttonDisconnect);
             this.Controls.Add(this.buttonConnect);
             this.Controls.Add(this.textboxIP);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Trend";
+            this.Text = "Trend";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -129,8 +142,9 @@
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.Button buttonDisconnect;
         private System.Windows.Forms.TextBox TBRegAddress;
-        private System.Windows.Forms.Button buttonReadReg;
-        private System.Windows.Forms.TextBox TBValue;
+        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button Options;
     }
 }
 

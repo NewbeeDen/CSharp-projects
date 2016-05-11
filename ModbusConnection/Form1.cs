@@ -12,13 +12,15 @@ using System.Timers;
 
 namespace ModbusConnection
 {
-    public partial class Form1 : Form
+    public partial class Trend : Form
     {
         private ModbusTCP.Master MBmaster;
         private byte[] data;
         private static System.Timers.Timer myTimer = new System.Timers.Timer();
+        DateTime time;
+        ushort Address;
 
-        public Form1()
+        public Trend()
         {
             InitializeComponent();
         }
@@ -42,6 +44,8 @@ namespace ModbusConnection
                     {
                         labelStatus.Text = "Connected";
                         buttonConnect.Text = "Disconnect";
+                        timer1.Enabled = true;
+                        //SetTimer();
                     }
 
                 }
@@ -56,9 +60,9 @@ namespace ModbusConnection
         {
             if (MBmaster != null)
             {
-                myTimer.Stop();
+                timer1.Stop();
                 MBmaster.Dispose();
-                MBmaster = null; 
+                MBmaster = null;
             }
         }
 
@@ -70,14 +74,14 @@ namespace ModbusConnection
                 MBmaster = null;
                 labelStatus.Text = "Disconnected";
                 buttonConnect.Text = "Connect";
-                myTimer.Enabled = false;
+                timer1.Enabled = false;
             }
         }
 
         //Read input register
         private void buttonReadReg_Click(object sender, EventArgs e)
         {
-            SetTimer();
+
         }
 
         //Event for responce data
@@ -91,6 +95,7 @@ namespace ModbusConnection
             }
             data = values;
             ShowAs(null, null);
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -110,26 +115,50 @@ namespace ModbusConnection
             {
                 word[x / 2] = data[x] * 256 + data[x + 1];
             }
-
-            TBValue.Text = word[0].ToString();
+            time = DateTime.Now;
+            textBox.Text += time.ToString() + " " + word[0].ToString() + "\r\n";
         }
 
         private void SetTimer()
         {
-            myTimer.Interval = 1000;
-            myTimer.Elapsed += SendRequest;
-            myTimer.AutoReset = true;
-            myTimer.Enabled = true;
+
+            // timer1.Tick += new EventHandler(timer1_Tick);
+
+
         }
+
 
         private void SendRequest(Object source, ElapsedEventArgs e)
         {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
             ushort ID = 4;
             byte unit = Convert.ToByte(0);
-            ushort Address = Convert.ToUInt16(TBRegAddress.Text);
+            if (TBRegAddress.Text != null)
+            {
+                Address = Convert.ToUInt16(TBRegAddress.Text);
+            }
+            else
+            {
+                MessageBox.Show("Введите адресс переменной!!!");
+            }
             byte Length = Convert.ToByte(1);
 
             MBmaster.ReadInputRegister(ID, unit, Address, Length);
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Options_Click(object sender, EventArgs e)
+        {
+            Form Form2 = new Form2();
+            Form2.Show();
         }
     }
 }
