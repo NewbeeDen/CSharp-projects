@@ -22,3 +22,15 @@ C:\Users\Home\Desktop\ModbusConnection\ModbusConnection\obj\Debug\ModbusConnecti
 C:\Users\Home\Desktop\ModbusConnection\ModbusConnection\obj\Debug\ModbusConnection.csproj.GenerateResource.Cache
 C:\Users\Home\Desktop\ModbusConnection\ModbusConnection\obj\Debug\ModbusConnection.Trend.resources
 C:\Users\Home\Desktop\ModbusConnection\ModbusConnection\obj\Debug\ModbusConnection.Form2.resources
+F:\Den\C#\ModbusConnection\bin\Debug\ModbusConnection.exe.config
+F:\Den\C#\ModbusConnection\obj\Debug\ModbusConnection.exe
+F:\Den\C#\ModbusConnection\obj\Debug\ModbusConnection.pdb
+F:\Den\C#\ModbusConnection\bin\Debug\ModbusConnection.exe
+F:\Den\C#\ModbusConnection\bin\Debug\ModbusConnection.pdb
+F:\Den\C#\ModbusConnection\bin\Debug\ModbusTCP.pdb
+F:\Den\C#\ModbusConnection\bin\Debug\ModbusTCP.xml
+F:\Den\C#\ModbusConnection\obj\Debug\ModbusConnection.csprojResolveAssemblyReference.cache
+F:\Den\C#\ModbusConnection\obj\Debug\ModbusConnection.Trend.resources
+F:\Den\C#\ModbusConnection\obj\Debug\ModbusConnection.Form2.resources
+F:\Den\C#\ModbusConnection\obj\Debug\ModbusConnection.Properties.Resources.resources
+F:\Den\C#\ModbusConnection\obj\Debug\ModbusConnection.csproj.GenerateResource.Cache

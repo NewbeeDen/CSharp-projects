@@ -29,23 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textboxIP = new System.Windows.Forms.TextBox();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.labelStatus = new System.Windows.Forms.Label();
             this.buttonDisconnect = new System.Windows.Forms.Button();
-            this.TBRegAddress = new System.Windows.Forms.TextBox();
             this.textBox = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Options = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // textboxIP
-            // 
-            this.textboxIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textboxIP.Location = new System.Drawing.Point(31, 47);
-            this.textboxIP.Name = "textboxIP";
-            this.textboxIP.Size = new System.Drawing.Size(177, 22);
-            this.textboxIP.TabIndex = 0;
             // 
             // buttonConnect
             // 
@@ -78,13 +68,6 @@
             this.buttonDisconnect.Text = "Disconnect";
             this.buttonDisconnect.UseVisualStyleBackColor = true;
             this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
-            // 
-            // TBRegAddress
-            // 
-            this.TBRegAddress.Location = new System.Drawing.Point(386, 85);
-            this.TBRegAddress.Name = "TBRegAddress";
-            this.TBRegAddress.Size = new System.Drawing.Size(100, 20);
-            this.TBRegAddress.TabIndex = 3;
             // 
             // textBox
             // 
@@ -121,11 +104,9 @@
             this.ClientSize = new System.Drawing.Size(676, 463);
             this.Controls.Add(this.Options);
             this.Controls.Add(this.textBox);
-            this.Controls.Add(this.TBRegAddress);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.buttonDisconnect);
             this.Controls.Add(this.buttonConnect);
-            this.Controls.Add(this.textboxIP);
             this.Name = "Trend";
             this.Text = "Trend";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -136,12 +117,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textboxIP;
         private System.Windows.Forms.Button buttonConnect;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.Button buttonDisconnect;
-        private System.Windows.Forms.TextBox TBRegAddress;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button Options;

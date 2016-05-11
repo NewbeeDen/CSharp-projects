@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ModbusTCP;
 using System.Timers;
+using System.IO;
 
 namespace ModbusConnection
 {
@@ -17,8 +18,11 @@ namespace ModbusConnection
         private ModbusTCP.Master MBmaster;
         private byte[] data;
         private static System.Timers.Timer myTimer = new System.Timers.Timer();
+        string[,] param;
+        string[] addresses = new string[20]; 
         DateTime time;
         ushort Address;
+        string str;
 
         public Trend()
         {
@@ -34,21 +38,68 @@ namespace ModbusConnection
         {
             try
             {
-                if (MBmaster == null)
+                //Read settings file
+                StreamReader sr = new StreamReader("Settings.txt", Encoding.Default);
+                int count = System.IO.File.ReadAllLines("Settings.txt").Length;
+                param = new string[count, 7];
+                for (int x = 0; x < count; x++)
                 {
-                    //Create new modbus master and add event function
-                    MBmaster = new Master(textboxIP.Text, 502);
-                    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData);
-                    //MBmaster.OnException += new ModbusTCP.Master.ExceptionData(MBmaster_OnException);
-                    if (MBmaster.connected)
+                    str = sr.ReadLine();
+                    if (str != null)
                     {
-                        labelStatus.Text = "Connected";
-                        buttonConnect.Text = "Disconnect";
-                        timer1.Enabled = true;
-                        //SetTimer();
+                        string[] words = str.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        param[x, 0] = words[0];
+                        param[x, 1] = words[1];
+                        param[x, 2] = words[2];
+                        param[x, 3] = words[3];
+                        if (param[x, 3] == "REAL") param[x, 4] = words[4];
+                        if (param[x, 3] == "REAL") param[x, 5] = words[5]; else param[x, 5] = words[4];
+                        if (param[x, 3] == "REAL") param[x, 6] = words[6]; else param[x, 6] = words[5];
                     }
+                } 
+                sr.Close();
 
+                int z = 1, j = 0;
+                addresses[0] = param[0, 1]; 
+                for (int x = 1; x < count; x++)
+                {
+                    j = 0;
+                    for (;;)
+                        if (param[x, 1] == addresses[j]) break;
+                        else
+                        {
+                            j++;
+                            if (addresses[j] == null)
+                            {
+                                addresses[j] = param[x, 1];
+                                break;
+                            }
+                        }
                 }
+
+                for (int i = 0; i < 4; i++) textBox.Text += addresses[i] + "\r\n";
+
+                //if (MBmaster == null)
+                //{
+                //    //Create new modbus master and add event function
+                //    MBmaster = new Master(param[0,1], 502);
+                //    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData);
+                //    //MBmaster.OnException += new ModbusTCP.Master.ExceptionData(MBmaster_OnException);
+                //    if (MBmaster.connected)
+                //    {
+                //        labelStatus.Text = "Connected";
+                //        buttonConnect.Text = "Disconnect";
+                //        timer1.Enabled = true;
+                //    }
+                //}
+                //else
+                //{
+                //    MBmaster.Dispose();
+                //    MBmaster = null;
+                //    labelStatus.Text = "Disconnected";
+                //    buttonConnect.Text = "Connect";
+                //    timer1.Enabled = false;
+                //}
             }
             catch (SystemException error)
             {
@@ -68,14 +119,7 @@ namespace ModbusConnection
 
         private void buttonDisconnect_Click(object sender, EventArgs e)
         {
-            if (MBmaster != null)
-            {
-                MBmaster.Dispose();
-                MBmaster = null;
-                labelStatus.Text = "Disconnected";
-                buttonConnect.Text = "Connect";
-                timer1.Enabled = false;
-            }
+            
         }
 
         //Read input register
@@ -122,8 +166,6 @@ namespace ModbusConnection
         private void SetTimer()
         {
 
-            // timer1.Tick += new EventHandler(timer1_Tick);
-
 
         }
 
@@ -137,17 +179,17 @@ namespace ModbusConnection
         {
             ushort ID = 4;
             byte unit = Convert.ToByte(0);
-            if (TBRegAddress.Text != null)
+            if (param[0,2] != null)
             {
-                Address = Convert.ToUInt16(TBRegAddress.Text);
+                Address = Convert.ToUInt16(param[0, 2]);
+                byte Length = Convert.ToByte(1);
+                MBmaster.ReadInputRegister(ID, unit, Address, Length);
             }
             else
             {
                 MessageBox.Show("Введите адресс переменной!!!");
             }
-            byte Length = Convert.ToByte(1);
-
-            MBmaster.ReadInputRegister(ID, unit, Address, Length);
+            
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
