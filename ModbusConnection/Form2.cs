@@ -17,11 +17,13 @@ namespace ModbusConnection
         ComboBox[] cb = new ComboBox[300];
         string settingsstring;
         int NumberOfStrings;
-
+        Button[] btDelete = new Button[300];
+              
         public Form2()
         {
             InitializeComponent();
             NumberOfStrings = ReadSettings();
+            
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -81,8 +83,7 @@ namespace ModbusConnection
                         {
                             cb[x].SelectedIndex = 2;
                         }
-                        //cb[x].SelectedText = words[3];
-
+                        
                         tb[x, 3] = new System.Windows.Forms.TextBox();
                         tb[x, 3].Location = new System.Drawing.Point(643, 70 + x * 22);
                         tb[x, 3].Size = new System.Drawing.Size(122, 23);
@@ -92,8 +93,7 @@ namespace ModbusConnection
                         {
                             tb[x, 3].Text = words[4];
                         }
-
-
+                        
                         tb[x, 4] = new System.Windows.Forms.TextBox();
                         tb[x, 4].Location = new System.Drawing.Point(767, 70 + x * 22);
                         tb[x, 4].Size = new System.Drawing.Size(122, 23);
@@ -122,6 +122,13 @@ namespace ModbusConnection
                             tb[x, 5].Text = words[5];
                         }
 
+                        btDelete[x] = new System.Windows.Forms.Button();
+                        btDelete[x].Location = new System.Drawing.Point(1015, 70 + x * 22);
+                        btDelete[x].Size = new System.Drawing.Size(29, 29);
+                        btDelete[x].Tag = x.ToString();
+                        Controls.Add(btDelete[x]);
+                        btDelete[x].Click += new EventHandler(DelPosition);
+
                         x++;
                     } 
                 } while (str != null);
@@ -129,6 +136,15 @@ namespace ModbusConnection
             }
             
             return x;
+        }
+
+        private void DelPosition(object sender, EventArgs e)
+        {
+            int x = Convert.ToInt32((sender as Button).Tag);
+            
+            Controls.Remove(tb[x, 0]);
+            
+            throw new NotImplementedException();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -202,6 +218,25 @@ namespace ModbusConnection
             DialogResult dg = MessageBox.Show("Save changes?", "Attention", MessageBoxButtons.YesNo);
             if (dg == DialogResult.Yes)
             {
+                for (int i = 0; i < NumberOfStrings - 1; i++)
+                {
+                    for (int j = 1; j < NumberOfStrings; j++)
+                    {
+                        if (tb[j, 1] == tb[i, 1])
+                        {
+                            for (int z = 0; z < 6; z++)
+                            {
+                                TextBox tbTemp = tb[i + 1, z];
+                                tb[i + 1, z] = tb[j, z];
+                                tb[j, z] = tbTemp;
+                            }
+                            ComboBox cbTemp = cb[i + 1];
+                            cb[i + 1] = cb[j];
+                            cb[j] = cbTemp;
+                            break;
+                        }
+                    }
+                }
                 StreamWriter sw = new StreamWriter("Settings.txt", false, Encoding.Default);
                 for (int i = 0; i < NumberOfStrings; i++)
                 {
@@ -220,6 +255,11 @@ namespace ModbusConnection
                 }
                 sw.Close();
             }               
+        }
+
+        private void buttonDellete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

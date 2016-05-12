@@ -122,6 +122,12 @@
   <ItemGroup>
     <None Include="Resources\add1-_2899.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red-delete-button.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Buttons accept and delete.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

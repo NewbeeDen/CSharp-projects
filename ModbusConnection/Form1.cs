@@ -59,7 +59,7 @@ namespace ModbusConnection
                 } 
                 sr.Close();
 
-                int z = 1, j = 0;
+                int j = 0;
                 addresses[0] = param[0, 1]; 
                 for (int x = 1; x < count; x++)
                 {
@@ -77,29 +77,27 @@ namespace ModbusConnection
                         }
                 }
 
-                for (int i = 0; i < 4; i++) textBox.Text += addresses[i] + "\r\n";
-
-                //if (MBmaster == null)
-                //{
-                //    //Create new modbus master and add event function
-                //    MBmaster = new Master(param[0,1], 502);
-                //    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData);
-                //    //MBmaster.OnException += new ModbusTCP.Master.ExceptionData(MBmaster_OnException);
-                //    if (MBmaster.connected)
-                //    {
-                //        labelStatus.Text = "Connected";
-                //        buttonConnect.Text = "Disconnect";
-                //        timer1.Enabled = true;
-                //    }
-                //}
-                //else
-                //{
-                //    MBmaster.Dispose();
-                //    MBmaster = null;
-                //    labelStatus.Text = "Disconnected";
-                //    buttonConnect.Text = "Connect";
-                //    timer1.Enabled = false;
-                //}
+                if (MBmaster == null)
+                {
+                    //Create new modbus master and add event function
+                    MBmaster = new Master(addresses[0], 502);
+                    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData);
+                    //MBmaster.OnException += new ModbusTCP.Master.ExceptionData(MBmaster_OnException);
+                    if (MBmaster.connected)
+                    {
+                        labelStatus.Text = "Connected";
+                        buttonConnect.Text = "Disconnect";
+                        timer1.Enabled = true;
+                    }
+                }
+                else
+                {
+                    MBmaster.Dispose();
+                    MBmaster = null;
+                    labelStatus.Text = "Disconnected";
+                    buttonConnect.Text = "Connect";
+                    timer1.Enabled = false;
+                }
             }
             catch (SystemException error)
             {
@@ -189,7 +187,6 @@ namespace ModbusConnection
             {
                 MessageBox.Show("Введите адресс переменной!!!");
             }
-            
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
@@ -201,6 +198,11 @@ namespace ModbusConnection
         {
             Form Form2 = new Form2();
             Form2.Show();
+        }
+
+        private void Trend_Activated(object sender, EventArgs e)
+        {
+
         }
     }
 }
