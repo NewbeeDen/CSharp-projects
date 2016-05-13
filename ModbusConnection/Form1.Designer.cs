@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.buttonConnect = new System.Windows.Forms.Button();
             this.labelStatus = new System.Windows.Forms.Label();
-            this.buttonDisconnect = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Options = new System.Windows.Forms.Button();
@@ -39,7 +38,7 @@
             // 
             // buttonConnect
             // 
-            this.buttonConnect.Location = new System.Drawing.Point(233, 47);
+            this.buttonConnect.Location = new System.Drawing.Point(12, 41);
             this.buttonConnect.Name = "buttonConnect";
             this.buttonConnect.Size = new System.Drawing.Size(133, 23);
             this.buttonConnect.TabIndex = 1;
@@ -52,33 +51,23 @@
             this.labelStatus.AutoSize = true;
             this.labelStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelStatus.Location = new System.Drawing.Point(74, 85);
+            this.labelStatus.Location = new System.Drawing.Point(151, 44);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(93, 18);
             this.labelStatus.TabIndex = 2;
             this.labelStatus.Text = "Disconnected";
             this.labelStatus.Click += new System.EventHandler(this.label1_Click);
             // 
-            // buttonDisconnect
-            // 
-            this.buttonDisconnect.Location = new System.Drawing.Point(233, 82);
-            this.buttonDisconnect.Name = "buttonDisconnect";
-            this.buttonDisconnect.Size = new System.Drawing.Size(133, 23);
-            this.buttonDisconnect.TabIndex = 1;
-            this.buttonDisconnect.Text = "Disconnect";
-            this.buttonDisconnect.UseVisualStyleBackColor = true;
-            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
-            // 
             // textBox
             // 
             this.textBox.AcceptsReturn = true;
             this.textBox.AcceptsTab = true;
-            this.textBox.Location = new System.Drawing.Point(31, 126);
+            this.textBox.Location = new System.Drawing.Point(15, 70);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.ReadOnly = true;
             this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox.Size = new System.Drawing.Size(455, 202);
+            this.textBox.Size = new System.Drawing.Size(649, 227);
             this.textBox.TabIndex = 6;
             this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
@@ -105,7 +94,6 @@
             this.Controls.Add(this.Options);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.labelStatus);
-            this.Controls.Add(this.buttonDisconnect);
             this.Controls.Add(this.buttonConnect);
             this.Name = "Trend";
             this.Text = "Trend";
@@ -120,7 +108,6 @@
         #endregion
         private System.Windows.Forms.Button buttonConnect;
         private System.Windows.Forms.Label labelStatus;
-        private System.Windows.Forms.Button buttonDisconnect;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button Options;

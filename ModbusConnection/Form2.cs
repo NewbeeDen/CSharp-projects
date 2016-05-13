@@ -123,8 +123,10 @@ namespace ModbusConnection
                         }
 
                         btDelete[x] = new System.Windows.Forms.Button();
-                        btDelete[x].Location = new System.Drawing.Point(1015, 70 + x * 22);
-                        btDelete[x].Size = new System.Drawing.Size(29, 29);
+                        btDelete[x].Location = new System.Drawing.Point(1015, 69 + x * 22);
+                        btDelete[x].Size = new System.Drawing.Size(23, 23);
+                        btDelete[x].BackgroundImage = ModbusConnection.Properties.Resources.Buttons_accept_and_delete;
+                        btDelete[x].BackgroundImageLayout = ImageLayout.Stretch;
                         btDelete[x].Tag = x.ToString();
                         Controls.Add(btDelete[x]);
                         btDelete[x].Click += new EventHandler(DelPosition);
@@ -140,11 +142,47 @@ namespace ModbusConnection
 
         private void DelPosition(object sender, EventArgs e)
         {
+            //Получаем номер удаляемой строки и удаляем элементы
             int x = Convert.ToInt32((sender as Button).Tag);
+            for (int i = 0; i < 6; i++)
+            {
+                Controls.Remove(tb[x, i]);
+                if (tb[x, i] != null) tb[x, i] = null;
+            }
+            Controls.Remove(cb[x]);
+            if (cb[x] != null) cb[x] = null;
+            Controls.Remove(btDelete[x]);
+            if (btDelete[x] != null) btDelete[x] = null;
             
-            Controls.Remove(tb[x, 0]);
-            
-            throw new NotImplementedException();
+            //Смещаем номера оставшихся строк
+            for (int i = x + 1; i < NumberOfStrings; i++)
+            {
+                btDelete[i].Tag = i - 1;
+            }
+
+            //Смещение расположения оставшихся элементов
+            for (int i = x; i < NumberOfStrings - 1; i++)
+            {
+                tb[i, 0] = tb[i + 1, 0];
+                tb[i, 0].Location = new System.Drawing.Point(13, 70 + i * 22);
+                tb[i, 1] = tb[i + 1, 1];
+                tb[i, 1].Location = new System.Drawing.Point(271, 70 + i * 22);
+                tb[i, 2] = tb[i + 1, 2];
+                tb[i, 2].Location = new System.Drawing.Point(395, 70 + i * 22);
+                tb[i, 3] = tb[i + 1, 3];
+                tb[i, 3].Location = new System.Drawing.Point(643, 70 + i * 22);
+                tb[i, 4] = tb[i + 1, 4];
+                tb[i, 4].Location = new System.Drawing.Point(767, 70 + i * 22);
+                tb[i, 5] = tb[i + 1, 5];
+                tb[i, 5].Location = new System.Drawing.Point(891, 70 + i * 22);
+                cb[i] = cb[i + 1];
+                cb[i].Location = new System.Drawing.Point(519, 70 + i * 22);
+                btDelete[i] = btDelete[i + 1];
+                btDelete[i].Location = new System.Drawing.Point(1015, 70 + i * 22);
+            }
+
+            NumberOfStrings--;
+                        
         }
 
         private void button1_Click(object sender, EventArgs e)

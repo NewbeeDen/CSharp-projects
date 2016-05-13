@@ -13,16 +13,29 @@ using System.IO;
 
 namespace ModbusConnection
 {
+    
+    //public class MyTimer : System.Timers.Timer
+    //{
+    //    public MyTimer()
+    //    {
+    //    }
+    //    public object Tag { get; set; }
+    //}
+
     public partial class Trend : Form
     {
         private ModbusTCP.Master MBmaster;
-        private byte[] data;
+        private byte[] data1, data2, data3;
         private static System.Timers.Timer myTimer = new System.Timers.Timer();
         string[,] param;
-        string[] addresses = new string[20]; 
+        string[] addresses = new string[20];
+        System.Windows.Forms.Timer[] timers; 
         DateTime time;
         ushort Address;
         string str;
+        System.Windows.Forms.Timer tm1 = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer tm2 = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer tm3 = new System.Windows.Forms.Timer();
 
         public Trend()
         {
@@ -32,6 +45,57 @@ namespace ModbusConnection
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int index = Convert.ToInt32((sender as System.Windows.Forms.Timer).Tag);
+            ushort ID = 4;
+            byte unit = Convert.ToByte(0);
+            if (param[index, 2] != null)
+            {
+                Address = Convert.ToUInt16(param[index, 2]);
+                byte Length = Convert.ToByte(1);
+                MBmaster.ReadInputRegister(ID, unit, Address, Length);
+            }
+            else
+            {
+                MessageBox.Show("Введите адресс переменной!!!");
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            int index = Convert.ToInt32((sender as System.Windows.Forms.Timer).Tag);
+            ushort ID = 4;
+            byte unit = Convert.ToByte(0);
+            if (param[index, 2] != null)
+            {
+                Address = Convert.ToUInt16(param[index, 2]);
+                byte Length = Convert.ToByte(1);
+                MBmaster.ReadInputRegister(ID, unit, Address, Length);
+            }
+            else
+            {
+                MessageBox.Show("Введите адресс переменной!!!");
+            }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            int index = Convert.ToInt32((sender as System.Windows.Forms.Timer).Tag);
+            ushort ID = 4;
+            byte unit = Convert.ToByte(0);
+            if (param[index, 2] != null)
+            {
+                Address = Convert.ToUInt16(param[index, 2]);
+                byte Length = Convert.ToByte(1);
+                MBmaster.ReadInputRegister(ID, unit, Address, Length);
+            }
+            else
+            {
+                MessageBox.Show("Введите адресс переменной!!!");
+            }
         }
 
         private void buttonConnect_Click(object sender, EventArgs e)
@@ -77,17 +141,42 @@ namespace ModbusConnection
                         }
                 }
 
+                //timers = new MyTimer[count];
+                //for (int i = 0; i < count; i++)
+                //{
+                //    timers[i] = new System.Windows.Forms.Timer();
+                //    timers[i].Tag = i;
+                //    timers[i].Interval = Convert.ToInt32(param[i, 5]) * 1000;
+                //    timers[i].Tick += timer1_Tick;
+                //}
+                
+                tm1.Tag = 0;
+                tm1.Interval = Convert.ToInt32(param[0, 5]) * 1000;
+                tm1.Tick += timer1_Tick;
+
+                tm2.Tag = 1;
+                tm2.Interval = Convert.ToInt32(param[1, 5]) * 1000;
+                tm2.Tick += timer2_Tick;
+
+                tm3.Tag = 2;
+                tm3.Interval = Convert.ToInt32(param[2, 5]) * 1000;
+                tm3.Tick += timer3_Tick;
+
                 if (MBmaster == null)
                 {
                     //Create new modbus master and add event function
                     MBmaster = new Master(addresses[0], 502);
-                    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData);
+                    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData1);
+                    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData2);
+                    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData3);
                     //MBmaster.OnException += new ModbusTCP.Master.ExceptionData(MBmaster_OnException);
                     if (MBmaster.connected)
                     {
                         labelStatus.Text = "Connected";
                         buttonConnect.Text = "Disconnect";
-                        timer1.Enabled = true;
+                        tm1.Start();
+                        tm2.Start();
+                        tm3.Start();
                     }
                 }
                 else
@@ -96,7 +185,9 @@ namespace ModbusConnection
                     MBmaster = null;
                     labelStatus.Text = "Disconnected";
                     buttonConnect.Text = "Connect";
-                    timer1.Enabled = false;
+                    tm1.Stop();
+                    tm2.Stop();
+                    tm3.Stop();
                 }
             }
             catch (SystemException error)
@@ -109,84 +200,101 @@ namespace ModbusConnection
         {
             if (MBmaster != null)
             {
-                timer1.Stop();
                 MBmaster.Dispose();
                 MBmaster = null;
             }
         }
 
-        private void buttonDisconnect_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        //Read input register
-        private void buttonReadReg_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //Event for responce data
-        private void MBmaster_OnResponceData(ushort ID, byte unit, byte function, byte[] values)
+        private void MBmaster_OnResponceData1(ushort ID, byte unit, byte function, byte[] values)
         {
             //Separate calling threads
             if (this.InvokeRequired)
             {
-                this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponceData), new object[] { ID, unit, function, values });
+                this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponceData1), new object[] { ID, unit, function, values });
                 return;
             }
-            data = values;
-            ShowAs(null, null);
+            data1 = values;
+            ShowAs1(null, null);
+        }
 
+        private void MBmaster_OnResponceData2(ushort ID, byte unit, byte function, byte[] values)
+        {
+            //Separate calling threads
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponceData2), new object[] { ID, unit, function, values });
+                return;
+            }
+            data2 = values;
+            ShowAs2(null, null);
+        }
+
+        private void MBmaster_OnResponceData3(ushort ID, byte unit, byte function, byte[] values)
+        {
+            //Separate calling threads
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponceData3), new object[] { ID, unit, function, values });
+                return;
+            }
+            data3 = values;
+            ShowAs3(null, null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            data = new byte[0];
+            data1 = new byte[0];
+            data2 = new byte[0];
+            data3 = new byte[0];
         }
 
-        private void ShowAs(object sender, System.EventArgs e)
+        private void ShowAs1(object sender, System.EventArgs e)
         {
             bool[] bits = new bool[1];
             int[] word = new int[1];
 
             //Convert data
-            if (data.Length < 2) return;
-            word = new int[data.Length / 2];
-            for (int x = 0; x < data.Length; x = x + 2)
+            if (data1.Length < 2) return;
+            word = new int[data1.Length / 2];
+            for (int x = 0; x < data1.Length; x = x + 2)
             {
-                word[x / 2] = data[x] * 256 + data[x + 1];
+                word[x / 2] = data1[x] * 256 + data1[x + 1];
             }
             time = DateTime.Now;
             textBox.Text += time.ToString() + " " + word[0].ToString() + "\r\n";
         }
 
-        private void SetTimer()
+        private void ShowAs2(object sender, System.EventArgs e)
         {
+            bool[] bits = new bool[1];
+            int[] word = new int[1];
 
-
+            //Convert data
+            if (data2.Length < 2) return;
+            word = new int[data2.Length / 2];
+            for (int x = 0; x < data2.Length; x = x + 2)
+            {
+                word[x / 2] = data2[x] * 256 + data2[x + 1];
+            }
+            time = DateTime.Now;
+            textBox.Text += time.ToString() + " " + word[0].ToString() + "\r\n";
         }
 
-
-        private void SendRequest(Object source, ElapsedEventArgs e)
+        private void ShowAs3(object sender, System.EventArgs e)
         {
+            bool[] bits = new bool[1];
+            int[] word = new int[1];
 
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            ushort ID = 4;
-            byte unit = Convert.ToByte(0);
-            if (param[0,2] != null)
+            //Convert data
+            if (data3.Length < 2) return;
+            word = new int[data3.Length / 2];
+            for (int x = 0; x < data3.Length; x = x + 2)
             {
-                Address = Convert.ToUInt16(param[0, 2]);
-                byte Length = Convert.ToByte(1);
-                MBmaster.ReadInputRegister(ID, unit, Address, Length);
+                word[x / 2] = data3[x] * 256 + data3[x + 1];
             }
-            else
-            {
-                MessageBox.Show("Введите адресс переменной!!!");
-            }
+            time = DateTime.Now;
+            textBox.Text += time.ToString() + " " + word[0].ToString() + "\r\n";
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
