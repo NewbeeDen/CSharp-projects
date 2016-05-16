@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using ModbusTCP;
 using System.Timers;
@@ -14,17 +14,10 @@ using System.IO;
 namespace ModbusConnection
 {
     
-    //public class MyTimer : System.Timers.Timer
-    //{
-    //    public MyTimer()
-    //    {
-    //    }
-    //    public object Tag { get; set; }
-    //}
-
     public partial class Trend : Form
     {
         private ModbusTCP.Master MBmaster;
+        Thread[] thread;
         private byte[] data1, data2, data3;
         private static System.Timers.Timer myTimer = new System.Timers.Timer();
         string[,] param;
@@ -141,15 +134,6 @@ namespace ModbusConnection
                         }
                 }
 
-                //timers = new MyTimer[count];
-                //for (int i = 0; i < count; i++)
-                //{
-                //    timers[i] = new System.Windows.Forms.Timer();
-                //    timers[i].Tag = i;
-                //    timers[i].Interval = Convert.ToInt32(param[i, 5]) * 1000;
-                //    timers[i].Tick += timer1_Tick;
-                //}
-                
                 tm1.Tag = 0;
                 tm1.Interval = Convert.ToInt32(param[0, 5]) * 1000;
                 tm1.Tick += timer1_Tick;
@@ -167,8 +151,6 @@ namespace ModbusConnection
                     //Create new modbus master and add event function
                     MBmaster = new Master(addresses[0], 502);
                     MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData1);
-                    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData2);
-                    MBmaster.OnResponseData += new ModbusTCP.Master.ResponseData(MBmaster_OnResponceData3);
                     //MBmaster.OnException += new ModbusTCP.Master.ExceptionData(MBmaster_OnException);
                     if (MBmaster.connected)
                     {
@@ -215,31 +197,7 @@ namespace ModbusConnection
                 return;
             }
             data1 = values;
-            ShowAs1(null, null);
-        }
-
-        private void MBmaster_OnResponceData2(ushort ID, byte unit, byte function, byte[] values)
-        {
-            //Separate calling threads
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponceData2), new object[] { ID, unit, function, values });
-                return;
-            }
-            data2 = values;
-            ShowAs2(null, null);
-        }
-
-        private void MBmaster_OnResponceData3(ushort ID, byte unit, byte function, byte[] values)
-        {
-            //Separate calling threads
-            if (this.InvokeRequired)
-            {
-                this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponceData3), new object[] { ID, unit, function, values });
-                return;
-            }
-            data3 = values;
-            ShowAs3(null, null);
+            ShowAs(null, null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -249,7 +207,7 @@ namespace ModbusConnection
             data3 = new byte[0];
         }
 
-        private void ShowAs1(object sender, System.EventArgs e)
+        private void ShowAs(object sender, System.EventArgs e)
         {
             bool[] bits = new bool[1];
             int[] word = new int[1];
@@ -260,38 +218,6 @@ namespace ModbusConnection
             for (int x = 0; x < data1.Length; x = x + 2)
             {
                 word[x / 2] = data1[x] * 256 + data1[x + 1];
-            }
-            time = DateTime.Now;
-            textBox.Text += time.ToString() + " " + word[0].ToString() + "\r\n";
-        }
-
-        private void ShowAs2(object sender, System.EventArgs e)
-        {
-            bool[] bits = new bool[1];
-            int[] word = new int[1];
-
-            //Convert data
-            if (data2.Length < 2) return;
-            word = new int[data2.Length / 2];
-            for (int x = 0; x < data2.Length; x = x + 2)
-            {
-                word[x / 2] = data2[x] * 256 + data2[x + 1];
-            }
-            time = DateTime.Now;
-            textBox.Text += time.ToString() + " " + word[0].ToString() + "\r\n";
-        }
-
-        private void ShowAs3(object sender, System.EventArgs e)
-        {
-            bool[] bits = new bool[1];
-            int[] word = new int[1];
-
-            //Convert data
-            if (data3.Length < 2) return;
-            word = new int[data3.Length / 2];
-            for (int x = 0; x < data3.Length; x = x + 2)
-            {
-                word[x / 2] = data3[x] * 256 + data3[x + 1];
             }
             time = DateTime.Now;
             textBox.Text += time.ToString() + " " + word[0].ToString() + "\r\n";
