@@ -1,0 +1,9 @@
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\bin\Debug\NetworkTransfer.exe.config
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\bin\Debug\NetworkTransfer.exe
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\bin\Debug\NetworkTransfer.pdb
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\obj\Debug\NetworkTransfer.csprojResolveAssemblyReference.cache
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\obj\Debug\NetworkTransfer.Form1.resources
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\obj\Debug\NetworkTransfer.Properties.Resources.resources
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\obj\Debug\NetworkTransfer.csproj.GenerateResource.Cache
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\obj\Debug\NetworkTransfer.exe
+c:\users\den\documents\visual studio 2015\Projects\NetworkTransfer\NetworkTransfer\obj\Debug\NetworkTransfer.pdb
