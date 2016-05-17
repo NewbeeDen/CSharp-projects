@@ -256,25 +256,25 @@ namespace ModbusConnection
             DialogResult dg = MessageBox.Show("Save changes?", "Attention", MessageBoxButtons.YesNo);
             if (dg == DialogResult.Yes)
             {
-                for (int i = 0; i < NumberOfStrings - 1; i++)
-                {
-                    for (int j = 1; j < NumberOfStrings; j++)
-                    {
-                        if (tb[j, 1] == tb[i, 1])
-                        {
-                            for (int z = 0; z < 6; z++)
-                            {
-                                TextBox tbTemp = tb[i + 1, z];
-                                tb[i + 1, z] = tb[j, z];
-                                tb[j, z] = tbTemp;
-                            }
-                            ComboBox cbTemp = cb[i + 1];
-                            cb[i + 1] = cb[j];
-                            cb[j] = cbTemp;
-                            break;
-                        }
-                    }
-                }
+                //for (int i = 0; i < NumberOfStrings - 1; i++)
+                //{
+                //    for (int j = 1; j < NumberOfStrings; j++)
+                //    {
+                //        if (tb[j, 1] == tb[i, 1])
+                //        {
+                //            for (int z = 0; z < 6; z++)
+                //            {
+                //                TextBox tbTemp = tb[i + 1, z];
+                //                tb[i + 1, z] = tb[j, z];
+                //                tb[j, z] = tbTemp;
+                //            }
+                //            ComboBox cbTemp = cb[i + 1];
+                //            cb[i + 1] = cb[j];
+                //            cb[j] = cbTemp;
+                //            break;
+                //        }
+                //    }
+                //}
                 StreamWriter sw = new StreamWriter("Settings.txt", false, Encoding.Default);
                 for (int i = 0; i < NumberOfStrings; i++)
                 {

@@ -17,19 +17,17 @@ namespace ModbusConnection
     public partial class Trend : Form
     {
         private ModbusTCP.Master MBmaster;
-        Thread[] thread;
-        private byte[] data1, data2, data3;
+        private byte[] data1;
         private static System.Timers.Timer myTimer = new System.Timers.Timer();
         string[,] param;
+        int[] queue;
         string[] addresses = new string[20];
+        int currentAddress, count, z;
         System.Windows.Forms.Timer[] timers; 
         DateTime time;
         ushort Address;
         string str;
-        System.Windows.Forms.Timer tm1 = new System.Windows.Forms.Timer();
-        System.Windows.Forms.Timer tm2 = new System.Windows.Forms.Timer();
-        System.Windows.Forms.Timer tm3 = new System.Windows.Forms.Timer();
-
+        
         public Trend()
         {
             InitializeComponent();
@@ -45,49 +43,12 @@ namespace ModbusConnection
             int index = Convert.ToInt32((sender as System.Windows.Forms.Timer).Tag);
             ushort ID = 4;
             byte unit = Convert.ToByte(0);
-            if (param[index, 2] != null)
+            if (param[index, 2] != null && MBmaster != null)
             {
                 Address = Convert.ToUInt16(param[index, 2]);
                 byte Length = Convert.ToByte(1);
                 MBmaster.ReadInputRegister(ID, unit, Address, Length);
-            }
-            else
-            {
-                MessageBox.Show("Введите адресс переменной!!!");
-            }
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            int index = Convert.ToInt32((sender as System.Windows.Forms.Timer).Tag);
-            ushort ID = 4;
-            byte unit = Convert.ToByte(0);
-            if (param[index, 2] != null)
-            {
-                Address = Convert.ToUInt16(param[index, 2]);
-                byte Length = Convert.ToByte(1);
-                MBmaster.ReadInputRegister(ID, unit, Address, Length);
-            }
-            else
-            {
-                MessageBox.Show("Введите адресс переменной!!!");
-            }
-        }
-
-        private void timer3_Tick(object sender, EventArgs e)
-        {
-            int index = Convert.ToInt32((sender as System.Windows.Forms.Timer).Tag);
-            ushort ID = 4;
-            byte unit = Convert.ToByte(0);
-            if (param[index, 2] != null)
-            {
-                Address = Convert.ToUInt16(param[index, 2]);
-                byte Length = Convert.ToByte(1);
-                MBmaster.ReadInputRegister(ID, unit, Address, Length);
-            }
-            else
-            {
-                MessageBox.Show("Введите адресс переменной!!!");
+                queue[index] = Address;
             }
         }
 
@@ -97,8 +58,11 @@ namespace ModbusConnection
             {
                 //Read settings file
                 StreamReader sr = new StreamReader("Settings.txt", Encoding.Default);
-                int count = System.IO.File.ReadAllLines("Settings.txt").Length;
+                count = System.IO.File.ReadAllLines("Settings.txt").Length;
+                z = count - 1;
                 param = new string[count, 7];
+                timers = new System.Windows.Forms.Timer[count];
+                queue = new int[count];
                 for (int x = 0; x < count; x++)
                 {
                     str = sr.ReadLine();
@@ -134,17 +98,13 @@ namespace ModbusConnection
                         }
                 }
 
-                tm1.Tag = 0;
-                tm1.Interval = Convert.ToInt32(param[0, 5]) * 1000;
-                tm1.Tick += timer1_Tick;
-
-                tm2.Tag = 1;
-                tm2.Interval = Convert.ToInt32(param[1, 5]) * 1000;
-                tm2.Tick += timer2_Tick;
-
-                tm3.Tag = 2;
-                tm3.Interval = Convert.ToInt32(param[2, 5]) * 1000;
-                tm3.Tick += timer3_Tick;
+                for (int i = 0; i < count; i++)
+                {
+                    timers[i] = new System.Windows.Forms.Timer();
+                    timers[i].Tag = i;
+                    timers[i].Interval = Convert.ToInt32(param[i, 5]) * 1000;
+                    timers[i].Tick += timer1_Tick;
+                }
 
                 if (MBmaster == null)
                 {
@@ -156,9 +116,10 @@ namespace ModbusConnection
                     {
                         labelStatus.Text = "Connected";
                         buttonConnect.Text = "Disconnect";
-                        tm1.Start();
-                        tm2.Start();
-                        tm3.Start();
+                        for (int i = 0; i < count; i++)
+                        {
+                            timers[i].Start();
+                        }
                     }
                 }
                 else
@@ -167,9 +128,10 @@ namespace ModbusConnection
                     MBmaster = null;
                     labelStatus.Text = "Disconnected";
                     buttonConnect.Text = "Connect";
-                    tm1.Stop();
-                    tm2.Stop();
-                    tm3.Stop();
+                    for (int i = 0; i < count; i++)
+                    {
+                        timers[i].Stop();
+                    }
                 }
             }
             catch (SystemException error)
@@ -194,6 +156,17 @@ namespace ModbusConnection
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponceData1), new object[] { ID, unit, function, values });
+                while (true)
+                {
+                    if (z >= 0)
+                    {
+                        currentAddress = queue[z];
+                        queue[z] = 0;
+                        if (z > 0) z--;
+                        else z = count - 1;
+                        break;
+                    }
+                }
                 return;
             }
             data1 = values;
@@ -203,8 +176,6 @@ namespace ModbusConnection
         private void Form1_Load(object sender, EventArgs e)
         {
             data1 = new byte[0];
-            data2 = new byte[0];
-            data3 = new byte[0];
         }
 
         private void ShowAs(object sender, System.EventArgs e)
@@ -220,12 +191,17 @@ namespace ModbusConnection
                 word[x / 2] = data1[x] * 256 + data1[x + 1];
             }
             time = DateTime.Now;
-            textBox.Text += time.ToString() + " " + word[0].ToString() + "\r\n";
+            textBox.Text += time.ToString() + " " + currentAddress.ToString() + " " + word[0].ToString() + "\r\n";
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            textBox.Text = "";
         }
 
         private void Options_Click(object sender, EventArgs e)

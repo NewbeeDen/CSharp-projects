@@ -34,6 +34,7 @@
             this.textBox = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Options = new System.Windows.Forms.Button();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonConnect
@@ -86,11 +87,22 @@
             this.Options.UseVisualStyleBackColor = true;
             this.Options.Click += new System.EventHandler(this.Options_Click);
             // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(557, 41);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(75, 23);
+            this.buttonClear.TabIndex = 8;
+            this.buttonClear.Text = "CLEAR";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            // 
             // Trend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(676, 463);
+            this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.Options);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.labelStatus);
@@ -111,6 +123,7 @@
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button Options;
+        private System.Windows.Forms.Button buttonClear;
     }
 }
 
