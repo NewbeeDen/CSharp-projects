@@ -25,7 +25,7 @@ namespace ModbusConnection
         int currentAddress, count, z;
         System.Windows.Forms.Timer[] timers; 
         DateTime time;
-        ushort Address;
+        ushort Address, ID;
         string str;
         
         public Trend()
@@ -41,13 +41,15 @@ namespace ModbusConnection
         private void timer1_Tick(object sender, EventArgs e)
         {
             int index = Convert.ToInt32((sender as System.Windows.Forms.Timer).Tag);
-            ushort ID = 4;
+            if (param[index, 3] == "BOOL") ID = 1;
+            else ID = 4;
             byte unit = Convert.ToByte(0);
             if (param[index, 2] != null && MBmaster != null)
             {
                 Address = Convert.ToUInt16(param[index, 2]);
                 byte Length = Convert.ToByte(1);
-                MBmaster.ReadInputRegister(ID, unit, Address, Length);
+                if (ID == 1) MBmaster.ReadCoils(ID, unit, Address, Length);
+                else MBmaster.ReadInputRegister(ID, unit, Address, Length);
                 queue[index] = Address;
             }
         }
@@ -158,15 +160,16 @@ namespace ModbusConnection
                 this.BeginInvoke(new Master.ResponseData(MBmaster_OnResponceData1), new object[] { ID, unit, function, values });
                 while (true)
                 {
-                    if (z >= 0)
-                    {
-                        currentAddress = queue[z];
-                        queue[z] = 0;
-                        if (z > 0) z--;
-                        else z = count - 1;
-                        break;
-                    }
+                    currentAddress = queue[z];
+                    queue[z] = 0;
+                    if (z > 0) z--;
+                    else z = count - 1;
+                    break;
                 }
+                //currentAddress = queue[z];
+                //queue[z] = 0;
+                //if (z < count - 1) z++;
+                //else z = 0;
                 return;
             }
             data1 = values;
@@ -182,15 +185,20 @@ namespace ModbusConnection
         {
             bool[] bits = new bool[1];
             int[] word = new int[1];
+            time = DateTime.Now;
 
             //Convert data
-            if (data1.Length < 2) return;
+            if (data1.Length < 2)
+            {
+                textBox.Text += time.ToString() + " " + currentAddress.ToString() + " " + data1[0].ToString() + "\r\n";
+                return;
+            }
             word = new int[data1.Length / 2];
             for (int x = 0; x < data1.Length; x = x + 2)
             {
                 word[x / 2] = data1[x] * 256 + data1[x + 1];
             }
-            time = DateTime.Now;
+            
             textBox.Text += time.ToString() + " " + currentAddress.ToString() + " " + word[0].ToString() + "\r\n";
         }
 
