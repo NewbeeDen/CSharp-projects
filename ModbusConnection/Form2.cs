@@ -89,38 +89,38 @@ namespace ModbusConnection
                         tb[x, 3].Size = new System.Drawing.Size(122, 23);
                         tb[x, 3].BorderStyle = BorderStyle.FixedSingle;
                         Controls.Add(tb[x, 3]);
-                        if (cb[x].SelectedIndex == 2)
-                        {
+                        //if (cb[x].SelectedIndex == 2)
+                        //{
                             tb[x, 3].Text = words[4];
-                        }
+                        //}
                         
                         tb[x, 4] = new System.Windows.Forms.TextBox();
                         tb[x, 4].Location = new System.Drawing.Point(767, 70 + x * 22);
                         tb[x, 4].Size = new System.Drawing.Size(122, 23);
                         tb[x, 4].BorderStyle = BorderStyle.FixedSingle;
                         Controls.Add(tb[x, 4]);
-                        if (cb[x].SelectedIndex == 2)
-                        {
+                        //if (cb[x].SelectedIndex == 2)
+                        //{
                             tb[x, 4].Text = words[5];
-                        }
-                        else
-                        {
-                            tb[x, 4].Text = words[4];
-                        }
+                        //}
+                        //else
+                        //{
+                        //    tb[x, 4].Text = words[4];
+                        //}
 
                         tb[x, 5] = new System.Windows.Forms.TextBox();
                         tb[x, 5].Location = new System.Drawing.Point(891, 70 + x * 22);
                         tb[x, 5].Size = new System.Drawing.Size(122, 23);
                         tb[x, 5].BorderStyle = BorderStyle.FixedSingle;
                         Controls.Add(tb[x, 5]);
-                        if (cb[x].SelectedIndex == 2)
-                        {
+                        //if (cb[x].SelectedIndex == 2)
+                        //{
                             tb[x, 5].Text = words[6];
-                        }
-                        else
-                        {
-                            tb[x, 5].Text = words[5];
-                        }
+                        //}
+                        //else
+                        //{
+                        //    tb[x, 5].Text = words[5];
+                        //}
 
                         btDelete[x] = new System.Windows.Forms.Button();
                         btDelete[x].Location = new System.Drawing.Point(1015, 69 + x * 22);
@@ -256,39 +256,20 @@ namespace ModbusConnection
             DialogResult dg = MessageBox.Show("Save changes?", "Attention", MessageBoxButtons.YesNo);
             if (dg == DialogResult.Yes)
             {
-                //for (int i = 0; i < NumberOfStrings - 1; i++)
-                //{
-                //    for (int j = 1; j < NumberOfStrings; j++)
-                //    {
-                //        if (tb[j, 1] == tb[i, 1])
-                //        {
-                //            for (int z = 0; z < 6; z++)
-                //            {
-                //                TextBox tbTemp = tb[i + 1, z];
-                //                tb[i + 1, z] = tb[j, z];
-                //                tb[j, z] = tbTemp;
-                //            }
-                //            ComboBox cbTemp = cb[i + 1];
-                //            cb[i + 1] = cb[j];
-                //            cb[j] = cbTemp;
-                //            break;
-                //        }
-                //    }
-                //}
                 StreamWriter sw = new StreamWriter("Settings.txt", false, Encoding.Default);
                 for (int i = 0; i < NumberOfStrings; i++)
                 {
                     if (tb[i, 0] != null)
                     {
                         settingsstring = tb[i, 0].Text.ToString().Replace(' ', '_');
-                        if (cb[i].Text == "REAL")
-                        {
+                        //if (cb[i].Text == "REAL")
+                        //{
                             sw.WriteLine(settingsstring + " " + tb[i, 1].Text.ToString().Trim() + " " + tb[i, 2].Text.ToString().Trim() + " " + cb[i].Text.ToString().Trim() + " " + tb[i, 3].Text.ToString().Trim() + " " + tb[i, 4].Text.ToString().Trim() + " " + tb[i, 5].Text.ToString().Trim());
-                        }
-                        else
-                        {
-                            sw.WriteLine(settingsstring + " " + tb[i, 1].Text.ToString().Trim() + " " + tb[i, 2].Text.ToString().Trim() + " " + cb[i].Text.ToString().Trim() + " " + tb[i, 4].Text.ToString().Trim() + " " + tb[i, 5].Text.ToString().Trim());
-                        }
+                        //}
+                        //else
+                        //{
+                        //    sw.WriteLine(settingsstring + " " + tb[i, 1].Text.ToString().Trim() + " " + tb[i, 2].Text.ToString().Trim() + " " + cb[i].Text.ToString().Trim() + " " + tb[i, 4].Text.ToString().Trim() + " " + tb[i, 5].Text.ToString().Trim());
+                        //}
                     }
                 }
                 sw.Close();
