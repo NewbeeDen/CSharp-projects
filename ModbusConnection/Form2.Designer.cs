@@ -28,79 +28,82 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.buttonName = new System.Windows.Forms.Button();
+            this.buttonAddress = new System.Windows.Forms.Button();
+            this.buttonStatus = new System.Windows.Forms.Button();
+            this.buttonTime = new System.Windows.Forms.Button();
+            this.buttonIP = new System.Windows.Forms.Button();
+            this.buttonType = new System.Windows.Forms.Button();
+            this.buttonID = new System.Windows.Forms.Button();
             this.buttonDellete = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonStatusTime = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button2
+            // buttonName
             // 
-            this.button2.Location = new System.Drawing.Point(12, 46);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(258, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Найменування";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonName.Location = new System.Drawing.Point(12, 46);
+            this.buttonName.Name = "buttonName";
+            this.buttonName.Size = new System.Drawing.Size(258, 23);
+            this.buttonName.TabIndex = 1;
+            this.buttonName.Text = "Найменування";
+            this.buttonName.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonAddress
             // 
-            this.button3.Location = new System.Drawing.Point(394, 46);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(124, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Адреса";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonAddress.Location = new System.Drawing.Point(394, 46);
+            this.buttonAddress.Name = "buttonAddress";
+            this.buttonAddress.Size = new System.Drawing.Size(124, 23);
+            this.buttonAddress.TabIndex = 1;
+            this.buttonAddress.Text = "Адреса";
+            this.buttonAddress.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonStatus
             // 
-            this.button4.Location = new System.Drawing.Point(642, 46);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(124, 23);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Чисел після коми";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonStatus.Location = new System.Drawing.Point(642, 46);
+            this.buttonStatus.Name = "buttonStatus";
+            this.buttonStatus.Size = new System.Drawing.Size(124, 23);
+            this.buttonStatus.TabIndex = 1;
+            this.buttonStatus.Text = "Статусна адреса";
+            this.buttonStatus.UseVisualStyleBackColor = true;
+            this.buttonStatus.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // buttonTime
             // 
-            this.button5.Location = new System.Drawing.Point(766, 46);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(124, 23);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "Інтервал часу";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonTime.Location = new System.Drawing.Point(890, 46);
+            this.buttonTime.Name = "buttonTime";
+            this.buttonTime.Size = new System.Drawing.Size(124, 23);
+            this.buttonTime.TabIndex = 1;
+            this.buttonTime.Text = "Інтервал часу";
+            this.buttonTime.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // buttonIP
             // 
-            this.button6.Location = new System.Drawing.Point(270, 46);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(124, 23);
-            this.button6.TabIndex = 1;
-            this.button6.Text = "IP сервера";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonIP.Location = new System.Drawing.Point(270, 46);
+            this.buttonIP.Name = "buttonIP";
+            this.buttonIP.Size = new System.Drawing.Size(124, 23);
+            this.buttonIP.TabIndex = 1;
+            this.buttonIP.Text = "IP сервера";
+            this.buttonIP.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // buttonType
             // 
-            this.button7.Location = new System.Drawing.Point(518, 46);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(124, 23);
-            this.button7.TabIndex = 1;
-            this.button7.Text = "Тип";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonType.Location = new System.Drawing.Point(518, 46);
+            this.buttonType.Name = "buttonType";
+            this.buttonType.Size = new System.Drawing.Size(124, 23);
+            this.buttonType.TabIndex = 1;
+            this.buttonType.Text = "Тип";
+            this.buttonType.UseVisualStyleBackColor = true;
+            this.buttonType.Click += new System.EventHandler(this.button7_Click);
             // 
-            // button8
+            // buttonID
             // 
-            this.button8.Location = new System.Drawing.Point(890, 46);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(124, 23);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "Идентификатор";
-            this.button8.UseVisualStyleBackColor = true;
+            this.buttonID.Location = new System.Drawing.Point(1014, 46);
+            this.buttonID.Name = "buttonID";
+            this.buttonID.Size = new System.Drawing.Size(124, 23);
+            this.buttonID.TabIndex = 1;
+            this.buttonID.Text = "Идентификатор";
+            this.buttonID.UseVisualStyleBackColor = true;
             // 
             // buttonDellete
             // 
@@ -126,24 +129,36 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // buttonStatusTime
+            // 
+            this.buttonStatusTime.Location = new System.Drawing.Point(766, 46);
+            this.buttonStatusTime.Name = "buttonStatusTime";
+            this.buttonStatusTime.Size = new System.Drawing.Size(124, 23);
+            this.buttonStatusTime.TabIndex = 1;
+            this.buttonStatusTime.Text = "Статусний час";
+            this.buttonStatusTime.UseVisualStyleBackColor = true;
+            this.buttonStatusTime.Click += new System.EventHandler(this.buttonStatusTime_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1053, 256);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(1147, 256);
+            this.Controls.Add(this.buttonTime);
+            this.Controls.Add(this.buttonStatusTime);
+            this.Controls.Add(this.buttonStatus);
+            this.Controls.Add(this.buttonIP);
+            this.Controls.Add(this.buttonID);
+            this.Controls.Add(this.buttonType);
+            this.Controls.Add(this.buttonAddress);
+            this.Controls.Add(this.buttonName);
             this.Controls.Add(this.buttonDellete);
             this.Controls.Add(this.button1);
             this.Name = "Form2";
             this.Text = "Options";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
 
         }
@@ -151,13 +166,14 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button buttonName;
+        private System.Windows.Forms.Button buttonAddress;
+        private System.Windows.Forms.Button buttonStatus;
+        private System.Windows.Forms.Button buttonTime;
+        private System.Windows.Forms.Button buttonIP;
+        private System.Windows.Forms.Button buttonType;
+        private System.Windows.Forms.Button buttonID;
         private System.Windows.Forms.Button buttonDellete;
+        private System.Windows.Forms.Button buttonStatusTime;
     }
 }

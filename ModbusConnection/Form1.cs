@@ -23,8 +23,8 @@ namespace ModbusConnection
         private byte[] data1;
         bool SomeServerConnected;
         bool[] dataBool;
-        int[,] values, states;
-        int[] dataInt, state;
+        int[,] values, states, statesTime;
+        int[] dataInt, state, stateTime;
         private static System.Timers.Timer myTimer = new System.Timers.Timer();
         private ModbusClient[] modbusClient = new ModbusClient[20];
         string[,] param;
@@ -104,7 +104,6 @@ namespace ModbusConnection
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
         
         private void timer1_Tick(object sender, EventArgs e)
@@ -130,6 +129,10 @@ namespace ModbusConnection
                                 {
                                     state = modbusClient[i].ReadInputRegisters(Convert.ToUInt16(param[index, 4]), Convert.ToByte(1));
                                 }
+                                if (Convert.ToUInt16(param[index, 5]) != 0)
+                                {
+                                    stateTime = modbusClient[i].ReadInputRegisters(Convert.ToUInt16(param[index, 5]), Convert.ToByte(1));
+                                }
                                 if (z <= 0)
                                 {
                                     textBox.Text += "\r\n";
@@ -139,19 +142,22 @@ namespace ModbusConnection
                                 if (values[index, 0] == 0)
                                 {
                                     values[index, 0] = Address;
-                                    states[index, 0] = Convert.ToUInt16(param[index, 4]); ;
+                                    states[index, 0] = Convert.ToUInt16(param[index, 4]);
+                                    statesTime[index, 0] = Convert.ToUInt16(param[index, 5]);
                                     values[index, 1] = Convert.ToInt16(dataBool[0]);
                                     states[index, 1] = state[0];
+                                    statesTime[index, 1] = stateTime[0];
                                     values[index, 2] = Convert.ToInt16(dataBool[0]);
                                     states[index, 2] = state[0];
+                                    statesTime[index, 2] = stateTime[0];
                                     string filename = @"\\10.0.4.243\exchange$\ASUTP\" + param[index, 6] + ".txt";
                                     StreamWriter sw = new StreamWriter(filename, true, Encoding.Default);
                                     string Time = DateTime.Now.ToString();
                                     string[] words = Time.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                                    sw.Write(words[0].ToString() + "\t" + words[1].ToString() + "\t" + values[index, 2]);
+                                    sw.Write(words[0].ToString() + "\t" + words[1].ToString() + "\t" + values[index, 2] + "\t" + statesTime[index, 2]);
                                     sw.Close();
                                 }
-                                if (values[index, 1] != values[index, 2] )
+                                if (values[index, 1] != values[index, 2])
                                 {
                                     string filename = @"\\10.0.4.243\exchange$\ASUTP\" + param[index, 6] + ".txt";
                                     StreamWriter sw = new StreamWriter(filename, true, Encoding.Default);
@@ -171,8 +177,17 @@ namespace ModbusConnection
                                     sw.Write("\t" + states[index, 2]);
                                     sw.Close();
                                 }
-                                
-                                textBox.Text += Address.ToString() + ":" + values[index, 2].ToString() + " ";
+                                statesTime[index, 2] = stateTime[0];
+                                if (statesTime[index, 1] != statesTime[index, 2])
+                                {
+                                    statesTime[index, 1] = statesTime[index, 2];
+                                    string filename = @"\\10.0.4.243\exchange$\ASUTP\" + param[index, 6] + ".txt";
+                                    StreamWriter sw = new StreamWriter(filename, true, Encoding.Default);
+                                    sw.Write("\t" + statesTime[index, 2]);
+                                    sw.Close();
+                                }
+
+                                textBox.Text += Address.ToString() + ":" + values[index, 2].ToString() + " " + statesTime[index, 2].ToString();
                                 z--;
                                 return;
                             }
@@ -221,7 +236,7 @@ namespace ModbusConnection
                     z = count;
                     values = new int[count, 3];
                     states = new int[count, 3];
-                    param = new string[count, 7];
+                    param = new string[count, 8];
                     timers = new System.Windows.Forms.Timer[count];
                     queue = new int[count];
                     for (int x = 0; x < count; x++)
@@ -235,13 +250,14 @@ namespace ModbusConnection
                             param[x, 2] = words[2];
                             param[x, 3] = words[3];
                             //if (param[x, 3] == "REAL")
-                                param[x, 4] = words[4];
+                            param[x, 4] = words[4];
                             //if (param[x, 3] == "REAL")
-                                param[x, 5] = words[5];
+                            param[x, 5] = words[5];
                             //else param[x, 5] = words[4];
                             //if (param[x, 3] == "REAL")
-                                param[x, 6] = words[6];
+                            param[x, 6] = words[6];
                             //else param[x, 6] = words[5];
+                            param[x, 7] = words[7];
                         }
                     } 
                     sr.Close();
@@ -361,7 +377,6 @@ namespace ModbusConnection
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -377,7 +392,6 @@ namespace ModbusConnection
 
         private void Trend_Activated(object sender, EventArgs e)
         {
-
         }
     }
 }

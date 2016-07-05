@@ -13,7 +13,7 @@ namespace ModbusConnection
 {
     public partial class Form2 : Form
     {
-        TextBox[,] tb = new TextBox[300, 6];
+        TextBox[,] tb = new TextBox[300, 7];
         ComboBox[] cb = new ComboBox[300];
         string settingsstring;
         int NumberOfStrings;
@@ -23,7 +23,6 @@ namespace ModbusConnection
         {
             InitializeComponent();
             NumberOfStrings = ReadSettings();
-            
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -31,6 +30,7 @@ namespace ModbusConnection
 
         }
 
+        //При открытии формы настроек, считываем уже имеющиеся настройки с файла
         private int ReadSettings()
         {
             int x = 0;
@@ -122,8 +122,15 @@ namespace ModbusConnection
                         //    tb[x, 5].Text = words[5];
                         //}
 
+                        tb[x, 6] = new System.Windows.Forms.TextBox();
+                        tb[x, 6].Location = new System.Drawing.Point(1015, 70 + x * 22);
+                        tb[x, 6].Size = new System.Drawing.Size(122, 23);
+                        tb[x, 6].BorderStyle = BorderStyle.FixedSingle;
+                        Controls.Add(tb[x, 6]);
+                        tb[x, 6].Text = words[7];
+
                         btDelete[x] = new System.Windows.Forms.Button();
-                        btDelete[x].Location = new System.Drawing.Point(1015, 69 + x * 22);
+                        btDelete[x].Location = new System.Drawing.Point(1139, 69 + x * 22);
                         btDelete[x].Size = new System.Drawing.Size(23, 23);
                         btDelete[x].BackgroundImage = ModbusConnection.Properties.Resources.Buttons_accept_and_delete;
                         btDelete[x].BackgroundImageLayout = ImageLayout.Stretch;
@@ -136,7 +143,6 @@ namespace ModbusConnection
                 } while (str != null);
                 sr.Close();
             }
-            
             return x;
         }
 
@@ -175,16 +181,17 @@ namespace ModbusConnection
                 tb[i, 4].Location = new System.Drawing.Point(767, 70 + i * 22);
                 tb[i, 5] = tb[i + 1, 5];
                 tb[i, 5].Location = new System.Drawing.Point(891, 70 + i * 22);
+                tb[i, 6] = tb[i + 1, 6];
+                tb[i, 6].Location = new System.Drawing.Point(1015, 70 + i * 22);
                 cb[i] = cb[i + 1];
                 cb[i].Location = new System.Drawing.Point(519, 70 + i * 22);
                 btDelete[i] = btDelete[i + 1];
-                btDelete[i].Location = new System.Drawing.Point(1015, 70 + i * 22);
+                btDelete[i].Location = new System.Drawing.Point(1139, 70 + i * 22);
             }
-
             NumberOfStrings--;
-                        
         }
 
+        //Добавляем новую строку
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -237,6 +244,12 @@ namespace ModbusConnection
                         tb[x, 5].BorderStyle = BorderStyle.FixedSingle;
                         Controls.Add(tb[x, 5]);
 
+                        tb[x, 6] = new System.Windows.Forms.TextBox();
+                        tb[x, 6].Location = new System.Drawing.Point(1015, 70 + NumberOfStrings * 22);
+                        tb[x, 6].Size = new System.Drawing.Size(122, 23);
+                        tb[x, 6].BorderStyle = BorderStyle.FixedSingle;
+                        Controls.Add(tb[x, 6]);
+
                         NumberOfStrings++;
                         break;
 
@@ -251,6 +264,7 @@ namespace ModbusConnection
             }
         }
 
+        //Перед закрытием формы запрос - сохранить ли изменения?
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dg = MessageBox.Show("Save changes?", "Attention", MessageBoxButtons.YesNo);
@@ -264,7 +278,7 @@ namespace ModbusConnection
                         settingsstring = tb[i, 0].Text.ToString().Replace(' ', '_');
                         //if (cb[i].Text == "REAL")
                         //{
-                            sw.WriteLine(settingsstring + " " + tb[i, 1].Text.ToString().Trim() + " " + tb[i, 2].Text.ToString().Trim() + " " + cb[i].Text.ToString().Trim() + " " + tb[i, 3].Text.ToString().Trim() + " " + tb[i, 4].Text.ToString().Trim() + " " + tb[i, 5].Text.ToString().Trim());
+                            sw.WriteLine(settingsstring + " " + tb[i, 1].Text.ToString().Trim() + " " + tb[i, 2].Text.ToString().Trim() + " " + cb[i].Text.ToString().Trim() + " " + tb[i, 3].Text.ToString().Trim() + " " + tb[i, 4].Text.ToString().Trim() + " " + tb[i, 5].Text.ToString().Trim() + " " + tb[i, 6].Text.ToString().Trim());
                         //}
                         //else
                         //{
@@ -277,6 +291,26 @@ namespace ModbusConnection
         }
 
         private void buttonDellete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonStatusTime_Click(object sender, EventArgs e)
         {
 
         }
